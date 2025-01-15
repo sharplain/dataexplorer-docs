@@ -61,7 +61,7 @@ StormEvents
 |-----|
 |   28|
 
-This query has a single tabular expression statement. The statement begins with a reference to a table called *StormEvents* and contains several operators---[`where`](where-operator.md) and [`count`](count-operator.md)---separated by pipes. 
+This query has a single tabular expression statement. The statement begins with a reference to a table called *StormEvents* and contains several operators—[`where`](where-operator.md) and [`count`](count-operator.md)—separated by pipes. 
 The data rows for the source table are filtered by the value of the `StartTime` column and then filtered by the value of the `State` column. 
 In the last line, the query returns a table with a single column and a single data row containing the count of the resulting rows.
 
@@ -87,11 +87,11 @@ For more information on management commands, see [Management Commands Overview](
 
 KQL is used by many Microsoft services. Learn more about the use of KQL in these environments on the following pages:
 
-[Log Queries in Azure Monitor](/azure/azure-monitor/logs/log-query-overview)
-[Kusto Query Language in Microsoft Sentinel](/azure/sentinel/kusto-overview)
-[Understanding the Azure Resource Graph Query Language](/azure/governance/resource-graph/concepts/query-language)
-[Proactive Threat Hunting in Microsoft 365 Defender](/microsoft-365/security/defender/advanced-hunting-overview)
-[CMPivot Queries](/mem/configmgr/core/servers/manage/cmpivot-overview#queries)
+* [Log Queries in Azure Monitor](/azure/azure-monitor/logs/log-query-overview)
+* [Kusto Query Language in Microsoft Sentinel](/azure/sentinel/kusto-overview)
+* [Understanding the Azure Resource Graph Query Language](/azure/governance/resource-graph/concepts/query-language)
+* [Proactive Threat Hunting in Microsoft 365 Defender](/microsoft-365/security/defender/advanced-hunting-overview)
+* [CMPivot Queries](/mem/configmgr/core/servers/manage/cmpivot-overview#queries)
 
 ## Related Topics
 
