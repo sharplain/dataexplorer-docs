@@ -22,18 +22,24 @@ The language is expressive, so that users can read queries easily and understand
 * geospatial functions
 * vector similarity searches
 
-A Kusto query is a read-only request to process data and return results. The request is stated in plain text, using a data-flow model that is easy to read, author, and automate. The query uses schema entities that are organized in a hierarchy similar to SQLs: databases, tables, and columns. You can input various types of tabular data to the query.
+A *Kusto query* is a read-only request to process data and return results. The request is stated in plain text, using a data-flow model that is easy to read, author, and automate. The query uses schema entities that are organized in a hierarchy similar to SQLs: databases, tables, and columns. You can input various types of tabular data to the query.
 
-Kusto queries are made of one or more query statements.
+Kusto queries are made of one or more *query statements*, separated by semicolons (`;`). There are two types of statements:
 
-There are two kinds of [query statements](statements.md):
+* [User query statements](statements.md#user-query-statements).
+* [Application query statements](statements.md#application-query-statements).
 
-1. A [tabular expression statement](tabular-expression-statements.md)
-1. An [application query statement](statements.md#application-query-statements).
+A *user query statement* can be one of the following:
 
-In a *tabular expression statement*---the most common kind of query statement---both input and output consist of tables or tabular datasets. Tabular expression statements contain zero or more operators, each of which starts with a tabular input and returns a tabular output. Operators are sequenced by a `|` (pipe). As the data flows, or is piped, from one operator to the next, it is filtered or manipulated, and then fed into the following step.
+* A [tabular expression statement](tabular-expression-statements.md) 
+* A [let statement](let-statement.md)
+* A [set statement](set-statement.md)
 
-The KQL query process can be thought of as a funnel: you insert a data table at the wide end, and each time the data passes through another operator, it is filtered, rearranged, or summarized---and thus "narrowed" and presented as output at the end of the funnel, according to your request. Because the piping of information from one operator to another is sequential, the order in which you run the query operators is important, and it can affect both results and performance. 
+Every KQL query must include at least one *tabular expression statement*. In these statements both input and output consist of tables or tabular datasets. Tabular expression statements contain zero or more operators, each of which starts with a tabular input and returns a tabular output. Operators are sequenced by a `|` (pipe). As the data flows, or is piped, from one operator to the next, it is filtered or manipulated, and then fed into the following step.
+
+The KQL query process can be thought of as a funnel: you insert a data table at the wide end, and each time the data passes through another operator, it is filtered, rearranged, or summarized, and thus "narrowed" and presented as output at the end of the funnel, according to your request. 
+
+Because the piping of information from one operator to another is sequential, the order in which you run the query operators is important, and it can affect both results and performance. 
 
 The following is an example of a KQL query which determines the number of storm events starting during a given interval at a given place:
 
@@ -55,7 +61,9 @@ This query has a single tabular expression statement. The statement begins with 
 The data rows for the source table are filtered by the value of the `StartTime` column and then filtered by the value of the `State` column. 
 In the last line, the query returns a table with a single column and a single data row containing the count of the resulting rows.
 
-Management Commands and Queries
+For information about application query statements, see [Application Query Statements](statements.md#application-query-statements).
+
+## Management Commands and Queries
 
 In contrast to Kusto queries,*management commands* are requests to Kusto to process or modify data or metadata. 
 
@@ -65,7 +73,7 @@ For example, the following management command creates a new Kusto table with two
 .create table Logs (Level:string, Text:string)
 ```
 
-Management commands have their own syntax, distinct from the Kusto Query Language syntax, although many of the underlying concepts are similar. In particular, management commands are distinguished from queries as the commands always start with the dot (`.`) character (which can't start a query). This distinction prevents many kinds of security attacks, because it prevents the embedding of management commands inside queries.
+Management commands have their own syntax, distinct from the Kusto Query Language syntax, although many of the underlying concepts are similar. In particular, management commands are distinguished from queries as the commands always begin with a period (`.`) character,while queries cannot begin with a `.`. This distinction prevents many kinds of security attacks, because it prevents attackers from embedding management commands within queries.
 
 Not all management commands modify data or metadata. Each command in the large class of commands that start with `.show` is used to display data or metadata. For example, the `.show tables` command returns a list of all tables in the current database.
 
